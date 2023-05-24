@@ -1,0 +1,25 @@
+/* Recordar hacer la referencia de estilo en los archivos.html que quiera hacer los estilos*/
+/* Selector de id #nombre_de_id ---> El simbolo (#) se refiere al id el cual no pueden repetirse son unicos*/
+#tituloPrincipal
+{
+    color: red;
+}
+
+/* Selector de Clases .nombre_de_clases ---> El punto en adelante hace referencia a las clases*/
+.parrafos
+{
+    text-align:  center;
+    color: green;
+    font-weight: bold;
+}
+
+.enfasis
+{
+    background-color: buttonshadow;
+}
+
+/* Selector de anclas*/
+a
+{
+    color: brown;
+}
