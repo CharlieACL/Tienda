@@ -20,6 +20,13 @@
                         </button>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-3"> 
+                        <a th:href="@{/categoria/nuevo}"
+                           class="btn btn-info">
+                            <i class="fas fa-plus"></i> [[#{accion.nuevo}]]</a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -89,7 +96,9 @@
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
                                                 <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
                                                    class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -109,3 +118,81 @@
                 </div>
             </div>
         </section>
+
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="editarCategoria">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/categoria/guardar}" 
+                          th:object="${categoria}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
+                        <section th:replace="~{categoria/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{accion.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="descripcion">[[#{categoria.descripcion}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="descripcion" th:field="*{descripcion}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="activo">[[#{categoria.activo}]]</label>
+                                                    <input class="form-check-input" 
+                                                           type="checkbox" 
+                                                           name="activo" 
+                                                           id="activo"
+                                                           th:field="*{activo}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
+                                                    <input class="form-control" type="file" name="imagenFile"
+                                                           onchange="readURL(this);" /> 
+                                                    <img id="blah" th:src="@{${categoria.rutaImagen}}" alt="your image" height="200"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/categoria/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

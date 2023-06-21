@@ -27,10 +27,24 @@ public class CategoriaServiceImpl implements CategoriaService
             categorias.removeIf(x -> !x.isActivo());
         }
         
-        return categorias;
-        
+        return categorias;       
     }
-        
-    
-    
+
+   @Override
+    @Transactional(readOnly = true)
+    public Categoria getCategoria(Categoria categoria) {
+        return categoriaDao.findById(categoria.getIdCategoria()).orElse(null); //findById retorna el id creado en la base de datos
+    }
+
+    @Override
+    @Transactional //Transactional deben llevar los metodos que modifican 
+    public void save(Categoria categoria) {
+        categoriaDao.save(categoria); //save modifica si el id ya existe, y si no lo toma como nuevo
+    }
+
+    @Override
+    @Transactional
+    public void delete(Categoria categoria) {
+        categoriaDao.delete(categoria);
+    }    
 }
