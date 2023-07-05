@@ -3,6 +3,7 @@ package com.tienda.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
 //Las anotaciones deben estar pegadas o unidas a las public class
@@ -21,10 +22,12 @@ public class Categoria implements Serializable
     private String rutaImagen;
     private boolean activo;
 
+    @OneToMany
+    @JoinColumn(name="id_categoria")
+    private List<Producto> productos;
+    
     public Categoria() {
     }
-    
-    
 
     public Categoria(String descripcion, String rutaImagen, boolean activo) 
     {

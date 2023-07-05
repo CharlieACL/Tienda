@@ -24,13 +24,13 @@ public class CategoriaServiceImpl implements CategoriaService
         
         if(activos)
         {
-            categorias.removeIf(x -> !x.isActivo());
+            categorias.removeIf(x -> !x.isActivo()); //Renueve elementos de una lista que cumplan con la caracteristica definida
         }
         
         return categorias;       
     }
 
-   @Override
+    @Override
     @Transactional(readOnly = true)
     public Categoria getCategoria(Categoria categoria) {
         return categoriaDao.findById(categoria.getIdCategoria()).orElse(null); //findById retorna el id creado en la base de datos
