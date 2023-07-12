@@ -20,4 +20,6 @@ public interface CategoriaService
     //Método para eliminar registro por su Id
     public void delete(Categoria categoria);
     
+    public List<Categoria> getPorDescripcion(String descripcion);
+    
 }
