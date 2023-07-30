@@ -73,7 +73,7 @@ public class ProjectConfig implements WebMvcConfigurer
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
- }
+    }
     
        /* El siguiente método se utiliza para completar la clase no es 
     realmente funcional, la próxima semana se reemplaza con usuarios de BD */
@@ -120,7 +120,7 @@ public class ProjectConfig implements WebMvcConfigurer
                         "/categoria/modificar/**", "/categoria/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar",
                         "/usuario/modificar/**", "/usuario/eliminar/**",
-                        "/reportes/**"
+                        "/usuario/listado","/reportes/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/producto/listado",
