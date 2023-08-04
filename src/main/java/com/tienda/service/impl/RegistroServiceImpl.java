@@ -53,6 +53,7 @@ public class RegistroServiceImpl implements RegistroService {
     public void activar(Usuario usuario, MultipartFile imagenFile) {
         var codigo = new BCryptPasswordEncoder();
         usuario.setPassword(codigo.encode(usuario.getPassword()));
+        usuario.setActivo(true);
 
         if (!imagenFile.isEmpty()) {
             usuarioService.save(usuario, false);
@@ -66,7 +67,8 @@ public class RegistroServiceImpl implements RegistroService {
     }
 
     @Override
-    public Model crearUsuario(Model model, Usuario usuario) throws MessagingException { 
+    public Model crearUsuario(Model model, Usuario usuario) 
+            throws MessagingException {
         String mensaje;
         if (!usuarioService.
                 existeUsuarioPorUsernameOCorreo(
@@ -96,7 +98,7 @@ public class RegistroServiceImpl implements RegistroService {
                 messageSource.getMessage(
                         "registro.activar", 
                         null, 
-                        Locale.getDefault())); //detecta el idioma en donde me emcuentro
+                        Locale.getDefault()));
         model.addAttribute(
                 "mensaje", 
                 mensaje);

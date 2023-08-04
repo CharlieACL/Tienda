@@ -105,7 +105,7 @@
                                             <th>[[#{usuario.username}]]</th>
                                             <th>[[#{usuario.nombre}]]</th>
                                             <th>[[#{usuario.apellidos}]]</th>
-                                            <td><img th:src="${usuario.rutaImagen}" height="100" /> </td>
+                                            
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
@@ -114,6 +114,7 @@
                                             <td>[[${usuario.username}]]</td>
                                             <td>[[${usuario.nombre}]]</td>
                                             <td>[[${usuario.apellidos}]]</td>
+                                            <td><img th:src="${usuario.rutaImagen}" height="100" /> </td>
                                             <td sec:authorize="hasRole('ROLE_ADMIN')">
                                                 <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
                                                    class="btn btn-danger">
