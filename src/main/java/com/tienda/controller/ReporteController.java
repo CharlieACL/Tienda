@@ -59,12 +59,15 @@ public class ReporteController {
         return reporteService.generaReporte(reporte, null, tipo);
     }
     @GetMapping("/roles")
-    public ResponseEntity<Resource> reporteRoles(@RequestParam String tipo) 
-            throws IOException {
+    public ResponseEntity<Resource> reporteroles(
+            @RequestParam String Rol,
+            @RequestParam String tipo) throws IOException {
+        //Esto espara definir los paràmetros que se pasan al reporte cliente
+        Map<String, Object> parametros = new HashMap();
+        parametros.put("Rol",  Rol);
         var reporte="roles";
-        return reporteService.generaReporte(reporte, null, tipo);
+        return reporteService.generaReporte(reporte, parametros, tipo);
     }
-
     @GetMapping("/ventasTotales")
     public ResponseEntity<Resource> reporteVentasTotales(
             @RequestParam String fechaInicio,
